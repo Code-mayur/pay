@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function redirectToPayment() {
+            const product = getQueryParam('upi');
+            let url = '';
+
+            switch(product) {
+                case 'rnmr%39':
+                    url = 'upi://pay?pa=pay2jyotimay@fam&pn=for%20Jyoti&cu=INR&am=59';
+                    break;
+                case 'rnmr%59':
+                    url = 'upi://pay?pa=pay2jyotimay@fam&pn=Samar%20Jyoti&cu=INR&am=79';
+                    break;
+                case 'rnmr%159':
+                    url = 'upi://pay?pa=pay2jyotimay@fam&pn=Samar%20Jyoti&cu=INR&am=99';
+                    break;
+                case 'rnmr%139':
+                    url = 'upi://pay?pa=pay2jyotimay@fam&pn=Samar%20Jyoti&cu=INR&am=119';
+                    break;
+                case 'rnmr%249':
+                    url = 'upi://pay?pa=pay2jyotimay@fam&pn=Samar%20Jyoti&cu=INR&am=139';
+                    break;
+                default:
+                    url = '#'; // Invalid product or default behavior
+                    break;
+            }
+
+            if (url !== '#') {
+                window.location.href = url;
+            } else {
+                document.body.innerHTML = '<p>Invalid product or link not found.</p>';
+            }
+        }
+
+        window.onload = redirectToPayment;
+    </script>
+</head>
+<body>
+    <p>If you are not redirected, <a href="#" id="fallback-link">click here</a>.</p>
+</body>
+</html>
